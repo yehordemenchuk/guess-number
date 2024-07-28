@@ -107,7 +107,3 @@ class Game:
             print()
         
         print("\nThank you for playing game!!!")
-
-game = Game()
-
-game.play()
