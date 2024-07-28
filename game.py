@@ -2,7 +2,7 @@ from random import randrange
 from enum import Enum
 
 class Game_state(Enum):
-    LOOSE = 0
+    NOT_WON = 0
     WON = 1
 
 class Game_difficulty(Enum):
@@ -18,11 +18,11 @@ class Game:
     __possible_attempts_counts = [range(10), range(8), range(5)]
 
     def __init__(self):
-        self.__game_state = Game_state.LOOSE
-
-        self.__secret_number = 0
+        self.__game_state = Game_state.NOT_WON
 
         self.__difficulty = Game_difficulty.LOW
+
+        self.__secret_number = 0
 
         self.__attempts_count = range(0)
 
@@ -38,24 +38,16 @@ class Game:
 
         self.__difficulty = Game_difficulty(int(user_choice))
 
-    def get_difficulty(self) -> Game_difficulty: return self.__difficulty
-    
     def set_secret_number(self): 
         self.__secret_number = randrange(self.__possible_generation_regimes[self.__difficulty.value])
 
-    def get_secret_number(self) -> int: return self.__secret_number
-
     def set_attempts_count(self):
         self.__attempts_count = self.__possible_attempts_counts[self.__difficulty.value]
-    
-    def get_attempts_count(self) -> range: return self.__attempts_count
 
     def __str__(self) -> str:
         return f"---{self.__name}---\nRules: try guess my number :)"
 
     def run(self):
-        print("Welcome to game \"Guess number\"")
-
         self.set_difficulty()
 
         self.set_secret_number()
@@ -64,32 +56,39 @@ class Game:
 
         attempts_count = self.__attempts_count
 
+        print()
+
         for _ in attempts_count:
             user_guess = ""
 
             while user_guess.isdigit() == False:
                 user_guess = input("Enter a random number: ")
+                
+            
+            user_guess_value = int(user_guess)
 
-            if int(user_guess) > self.__secret_number:
+            if user_guess_value > self.__secret_number:
                 print("No my number is smaller.")
 
-            elif int(user_guess) < self.__secret_number:
+            elif user_guess_value < self.__secret_number:
                 print("No my number is bigger")
             
             else:
-                print("You guess!!!")
+                print("\nYou guess!!!")
 
                 self.set_game_state(Game_state.WON)
 
                 break
         
         if self.is_game_won():
-            print("You won, great!!!")
+            print("\nYou won, great!!!\n")
 
         else:
-            print(f"You loose :(. My number was {self.__secret_number}")
+            print(f"\nYou loose :(. My number was {self.__secret_number}\n")
     
     def play(self):
+        print("Welcome to game \"Guess number\"\n")
+
         while True:
             self.run()
 
@@ -97,10 +96,18 @@ class Game:
 
             while user_choice != "yes" and user_choice != "no":
                 user_choice = input("Do you want to continue(yes/no): ")
+
+                user_choice = user_choice.lower()
             
             if user_choice == "no":
                 break
 
-            self.set_game_state(Game_state.LOOSE)
+            self.set_game_state(Game_state.NOT_WON)
+
+            print()
         
-        print("Thank you for playing game!!!")
+        print("\nThank you for playing game!!!")
+
+game = Game()
+
+game.play()
