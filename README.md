@@ -26,4 +26,3 @@ To run the game, use the following command in your terminal:
 ```shell
 python main.py
 ```
----
