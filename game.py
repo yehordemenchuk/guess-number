@@ -13,7 +13,7 @@ class Game_difficulty(Enum):
 class Game:
     __name = "Guess number"
 
-    __possible_generation_regimes = [21, 51, 101]
+    __possible_secret_number_upper_bounds = [21, 51, 101]
     
     __possible_attempts_counts = [range(10), range(8), range(5)]
 
@@ -39,7 +39,7 @@ class Game:
         self.__difficulty = Game_difficulty(int(user_choice))
 
     def set_secret_number(self): 
-        self.__secret_number = randrange(self.__possible_generation_regimes[self.__difficulty.value])
+        self.__secret_number = randrange(self.__possible_secret_number_upper_bounds[self.__difficulty.value])
 
     def set_attempts_count(self):
         self.__attempts_count = self.__possible_attempts_counts[self.__difficulty.value]
