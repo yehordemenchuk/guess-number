@@ -61,10 +61,9 @@ class Game:
         for _ in attempts_count:
             user_guess = ""
 
-            while user_guess.isdigit() == False:
+            while not user_guess.isdigit():
                 user_guess = input("Enter a random number: ")
                 
-            
             user_guess_value = int(user_guess)
 
             if user_guess_value > self.__secret_number:
