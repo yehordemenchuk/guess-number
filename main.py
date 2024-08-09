@@ -1,9 +1,9 @@
 from game import Game
 
-guess_number = Game()
+game = Game()
 
 try:
-    guess_number.play()
+    game.play()
 
 except KeyboardInterrupt:
     print("\nGame were interrupted by user")
