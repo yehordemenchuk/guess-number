@@ -1,8 +1,8 @@
 from game import Game
 
-try:
-    guess_number = Game()
+guess_number = Game()
 
+try:
     guess_number.play()
 
 except KeyboardInterrupt:
