@@ -1,9 +1,13 @@
 from game import Game
 
-game = Game()
+def main():
+    game = Game()
 
-try:
-    game.play()
+    try:
+        game.play()
 
-except KeyboardInterrupt:
-    print("\nGame were interrupted by user")
+    except KeyboardInterrupt:
+        print("\nGame were interrupted by user")
+
+if __name__ == "__main__":
+    main()
