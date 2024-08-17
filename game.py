@@ -26,7 +26,7 @@ class Game:
 
         self.__attempts_count = range(0)
 
-    def set_game_state(self, game_state): self.__game_state = game_state
+    def set_game_state(self, game_state: Game_state): self.__game_state = game_state
 
     def is_game_won(self) -> int: return self.__game_state.value
 
